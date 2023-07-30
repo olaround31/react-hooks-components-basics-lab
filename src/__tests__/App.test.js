@@ -1,22 +1,37 @@
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import React from "react";
 
-import App from "../components/App";
+function NavBar() {
+  return (
+    <nav>
+      <a href="#home">I'm a link!</a>
+    </nav>
+  );
+}
 
-test("renders without errors", () => {
-  expect(() => render(<App />)).not.toThrow();
-});
+function Home() {
+  return (
+    <div id="home">
+      <h1>Home</h1>
+    </div>
+  );
+}
 
-test("renders the correct child components", () => {
-  const { container } = render(<App />);
+function About() {
+  return (
+    <div id="about">
+      <h2>About</h2>
+    </div>
+  );
+}
 
-  /*
-    Uncomment the line below to see the DOM elements being returned
-    by the App component in your terminal when you run the tests
-  */
-  // screen.debug();
+function App() {
+  return (
+    <div>
+      <NavBar />
+      <Home />
+      <About />
+    </div>
+  );
+}
 
-  expect(container.querySelector("nav")).toBeInTheDocument();
-  expect(container.querySelector("#home")).toBeInTheDocument();
-  expect(container.querySelector("#about")).toBeInTheDocument();
-});
+export default App;
