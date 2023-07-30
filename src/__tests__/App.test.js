@@ -1,37 +1,15 @@
-import React from "react";
+import "@testing-library/jest-dom";
+import { render } from "@testing-library/react";
 
-function NavBar() {
-  return (
-    <nav>
-      <a href="#home">I'm a link!</a>
-    </nav>
-  );
-}
+import App from "../components/App";
 
-function Home() {
-  return (
-    <div id="home">
-      <h1>Home</h1>
-    </div>
-  );
-}
+test("renders without errors", () => {
+  expect(() => render(<App />)).not.toThrow();
+});
 
-function About() {
-  return (
-    <div id="about">
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div>
-      <NavBar />
-      <Home />
-      <About />
-    </div>
-  );
-}
-
-export default App;
+test("renders the correct child components", () => {
+  const { container } = render(<App />);
+  expect(container.querySelector("nav")).toBeInTheDocument();
+  expect(container.querySelector("#home")).toBeInTheDocument();
+  expect(container.querySelector("#about")).toBeInTheDocument();
+});
